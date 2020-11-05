@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/providers/product.dart';
 
+import 'product.dart';
+
 class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
@@ -15,8 +17,7 @@ class Products with ChangeNotifier {
       title: 'Trousers',
       description: 'A nice pair of trousers.',
       price: 59.99,
-      imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
     ),
     Product(
       id: 'p3',
@@ -33,9 +34,29 @@ class Products with ChangeNotifier {
       imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
   ];
+
+  var _showFavoritedOnly = false;
+
   List<Product> get items {
+//    if (_showFavoritedOnly) {
+//      return _items.where((element) => element.isFavorite).toList();
+//    }
     return [..._items];
   }
+
+  List<Product> get favoriteItems {
+    return _items.where((element) => element.isFavorite).toList();
+  }
+
+//  void showFavoritesOnly() {
+//    _showFavoritedOnly = true;
+//    notifyListeners();
+//  }
+//
+//  void showAll() {
+//    _showFavoritedOnly = false;
+//    notifyListeners();
+//  }
 
   void addProduct() {
     // _items.add(value);
